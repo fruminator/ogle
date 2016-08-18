@@ -1,0 +1,21 @@
+#ifndef CONSTPTR_IN
+#define CONSTPTR_IN
+
+#include "ConstPtr.h"
+
+template<class T>
+ConstPtr<T>::ConstPtr( const T * ptr ) : rawPtr_(ptr) {
+    if( rawPtr_ ) rawPtr_->newRef();
+  }
+
+template<class T>
+ConstPtr<T>::ConstPtr( const ConstPtr<T>& mp ) : rawPtr_(mp.rawPtr_) {
+    if( rawPtr_ ) rawPtr_->newRef();
+  }
+
+template<class T>
+ConstPtr<T>::~ConstPtr() {
+    if( rawPtr_) rawPtr_->deleteRef();
+  }
+
+#endif /* CONSTPTR_IN */

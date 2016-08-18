@@ -1,0 +1,12 @@
+751c751
+< max(const VectorT& x)
+---
+> max_fixed(const VectorT& x)
+766c766
+< min(const VectorT& x)
+---
+> min_fixed(const VectorT& x)
+1307c1307
+<     Real safe_min = std::numeric_limits<Real>::min();
+---
+>     Real safe_min = std::numeric_limits<Real>::min_fixed();

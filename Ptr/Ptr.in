@@ -1,0 +1,21 @@
+#ifndef PTR_IN
+#define PTR_IN
+
+#include "Ptr.h"
+
+template<class T>
+Ptr<T>::Ptr( T * ptr ) : ConstPtr<T>( ptr ) { }
+
+template<class T>
+Ptr<T>::Ptr( const Ptr<T>& mp ) : ConstPtr<T>(mp.rawPtr_) { }
+
+template<class T> void
+Ptr<T>::operator=( const Ptr<T>& mp ) {
+    const T * save = rawPtr_;
+    rawPtr_ = (const T*) mp.rawPtr_; 
+    if( rawPtr_ ) rawPtr_->newRef();
+    if( save ) save->deleteRef();
+  }
+
+#endif /* PTR_IN */
+
